@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Organic Soap - Your Store</title>
+    <style>
+        /* Existing styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f5;
+        }
+        header {
+            background-color: #2a5d2e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #3a6b3f;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        nav a:hover {
+            background-color: #4a7d50;
+        }
+
+        /* Submenu styles */
+        .submenu {
+            display: none;
+            background-color: #4a7d50;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .submenu a {
+            padding: 12px;
+            display: block;
+            text-decoration: none;
+            color: white;
+        }
+        .submenu a:hover {
+            background-color: #2a5d2e;
+        }
+
+        .hero-section {
+            background-image: url('your-hero-image.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 36px;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .product-item h3 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #3a6b3f;
+        }
+        .product-item p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .product-item .price {
+            font-size: 20px;
+            color: #2a5d2e;
+            margin-bottom: 10px;
+        }
+.product-item button {
+    background-color: #2a5d2e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 25px; /* Space above the button */
+    margin-bottom: 25px; /* Space below the button */
+}
+
+.product-item button:hover {
+    background-color: #3a6b3f;
+}
+
+        footer {
+            background-color: #2a5d2e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+.faq {
+    margin: 20px 0;
+}
+
+.faq__item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.faq__question {
+    background-color: #e6f0e6;
+    border: none;
+    padding: 15px;
+    text-align: left;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box; /* Ensures padding is included in width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+}
+
+.faq__answer-wrapper {
+    display: none;
+    padding: 15px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.faq__answer {
+    font-size: 16px;
+    color: #333;
+}
+
+.faq__item[aria-expanded="true"] .faq__answer-wrapper {
+    display: block;
+}
+
+.faq__icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.faq__icon svg {
+    fill: #333;
+}
+
+.faq__question::after {
+    content: '\25BC'; /* down arrow */
+    font-size: 16px;
+}
+
+.faq__item[aria-expanded="true"] .faq__question::after {
+    content: '\25B2'; /* up arrow */
+}
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .whatsapp-float img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            width: 500%;
+            transition: transform 1s ease-in-out;
+            animation: slide 15s infinite;
+        }
+        .carousel-images img {
+            width: 20%;
+            object-fit: cover;
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-100%); }
+            40% { transform: translateX(-200%); }
+            60% { transform: translateX(-300%); }
+            80% { transform: translateX(-400%); }
+            100% { transform: translateX(-500%); }
+        }
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .carousel-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: #888;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .carousel-dot.active {
+            background-color: #333;
+        }
+        #cart, #checkout {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        
+        }
+        #cart-items li {
+            margin-bottom: 10px;
+        }
+        .item-details {
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-details .item-title {
+            color: #000;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .item-details .item-size, .item-qty {
+            color: #AAA8BB; 
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .item-price {
+            font-weight: 600;
+            text-align: right;
+        }
+        .divider {
+            width: 100%;
+            height: 0.5px;
+            background-color: lightgray;
+            margin: 10px 0;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: #2a5d2e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        form button:hover {
+            background-color: #3a6b3f;
+        }
+        .add-to-cart path {
+            fill: var(--svg-fill, none);
+            stroke: var(--svg-stroke, none);
+            stroke-width: var(--svg-stroke-width, 2);
+        }
+  
+          .main-content {
+            padding: 20px;
+        }
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #3a6b3f;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #4a7d50;
+        }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+        #openSidebarBtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #2a5d2e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+        }
+  .hero-section {
+    position: relative;
+    text-align: center;
+    color: white; /* Adjust based on your design */
+}
+
+.hero-content {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto; /* Adjust size as needed */
+    display: block;
+}
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5px; /* Adjust font size for better visibility */
+    color: #ffffff; /* White color for contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adds a shadow for better readability */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background for readability */
+    padding: 20px; /* More padding for a cleaner look */
+    border-radius: 10px; /* Rounded corners for a softer appearance */
+    text-align: center; /* Center text alignment */
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Our Organic Soap Store</h1>
+</header>
+
+<nav>
+    <div class="main-content">
+    <button id="openSidebarBtn">Menu</button>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Main</a>
+    <a href="service.html">Services</a>
+    <a href="contact.html">Contact</a>
+</div>
+</nav>
+
+<section class="hero-section">
+    <div class="hero-content">
+        <img src="img/logo.png" alt="Natural Ingredients" class="hero-image">
+ </div>
+</section>
+
+  <div class="container">
+  <div class="product-grid">
+    <div class="product-item">
+      <img src="img/turmeric.jpeg" alt="Organic Soap">
+     <img src="img/turmeric1.jpeg" alt="Organic Soap 1">
+      <h3>Turmeric</h3>
+      <p>The Turmeric Organic Soap harnesses the anti-inflammatory and brightening properties of turmeric to promote a clear, glowing complexion. It gently exfoliates and nourishes, leaving your skin smooth and radiant.</p>
+   <div class="price">₹60.00</div>
+      <button onclick="addToCart('Turmeric Soap x1', 60)">Add to Cart</button>
+     
+          <img src="img/charcoal.jpeg" alt="Organic Soap">
+     <img src="img/charcoal1.jpeg" alt="Organic Soap 1">
+      <h3>Charcoal</h3>
+      <p>The Charcoal Organic Soap contains activated charcoal, which deeply cleanses and detoxifies the skin by drawing out impurities and excess oil. It leaves your skin feeling refreshed and balanced.</p>
+     <div class="price">₹60.00</div>
+      <button "onclick=addToCart('Charcoal Soap x1', 60)">Not in Stock</button>
+
+   
+   <img src="img/neem.jpeg" alt="Organic Soap">
+       <img src="img/neem1.jpeg" alt="Organic Soap 1">
+      <h3>Neem</h3>
+      <p>The Neem Organic Soap is infused with the purifying properties of neem, renowned for its antibacterial and soothing benefits. It effectively cleanses and helps to maintain clear, healthy skin.</p> 
+      <div class="price">₹60.00</div>
+      <button onclick="addToCart('Neem Soap x1', 60)">Add to Cart</button>
+    
+    
+        <img src="img/safron.jpeg" alt="Organic Soap">
+      <img src="img/safron1.jpeg" alt="Organic Soap 1">
+      <h3>Safron</h3>
+      <p>The Saffron Organic Soap features the enriching benefits of saffron, known for its skin-brightening qualities. It gently cleanses and nourishes, leaving your skin soft and radiant.</p>
+        <div class="price">₹80.00</div>
+      <button onclick="addToCart('Safron Soap x1', 80)">Add to Cart</button>
+    </div>
+  </div>
+    
+
+  <div id="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: ₹0.00</p>
+     <h6>*refresh the page for new data </h6>
+  </div>
+</div>
+  
+    <div id="checkout" style="display">
+    <h2>Checkout</h2>
+    <form id="dataForm">
+        Name: <input id="name" type="text" required><br>
+        Mobile No: <input id="url" type="number" id="mobile" required title="Enter a 10-digit number" oninput="validateNumber(this)"><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    function validateNumber(input) {
+        let value = input.value;
+        if (value.length > 10) {
+            input.value = value.slice(0, 10);
+        }
+    }
+</script>
+
+
+    <div class="faq">
+        <div class="faq__item" aria-expanded="false">
+            <div class="faq__question">
+                <span>What payment methods do you accept?</span>
+                <svg class="faq__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 14l-6-6h12z"></path></svg>
+            </div>
+            <div class="faq__answer-wrapper">
+                <div class="faq__answer">
+                  
+We accept various payment methods including GooglePay, Paytm and COD (Cash On Delivery) is also available. For more details, please share your name and mobile number to us</div>
+            </div>
+         
+        </div>        <div class="faq__item" aria-expanded="false">
+       
+       
+      <div class="faq__question">
+                <span>Can I modify or cancel my order after placing it?</span>
+                <svg class="faq__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 14l-6-6h12z"></path></svg>
+            </div>
+            <div class="faq__answer-wrapper">
+                <div class="faq__answer">
+                 Orders can be modified or canceled within a specific time frame after placement. Please contact our customer service as soon as possible for assistance with any changes to your order.</div>
+            </div>
+        <!-- Add more FAQ items as needed -->
+    
+          </div>        <div class="faq__item" aria-expanded="false">
+       
+       
+      <div class="faq__question">
+                <span>What is your return and exchange policy?</span>
+                <svg class="faq__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 14l-6-6h12z"></path></svg>
+            </div>
+            <div class="faq__answer-wrapper">
+                <div class="faq__answer">Currently, we do not offer returns or exchanges. Please review your order carefully before completing your purchase. If you have any questions, feel free to contact our customer support team for assistance.</div>
+            </div>
+        <!-- Add more FAQ items as needed -->
+    </div>
+           </div>        <div class="faq__item" aria-expanded="false">
+       
+       
+      <div class="faq__question">
+                <span>Which cities do you offer shipping to?</span>
+                <svg class="faq__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 14l-6-6h12z"></path></svg>
+            </div>
+            <div class="faq__answer-wrapper">
+                <div class="faq__answer">
+
+We offer shipping within the areas of Rander, Jahagirpura, Palanpur Patia, and Adajan. As a small, local business not based in the city, we are currently unable to provide shipping outside these areas.</div>
+        <!-- Add more FAQ items as needed -->
+    </div>
+             
+             </div>        <div class="faq__item" aria-expanded="false">
+       
+       
+      <div class="faq__question">
+                <span>What are the benefits of using organic soaps?</span>
+                <svg class="faq__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 14l-6-6h12z"></path></svg>
+            </div>
+            <div class="faq__answer-wrapper">
+                <div class="faq__answer">
+
+Organic soaps are made with natural ingredients that are gentle on the skin and free from synthetic chemicals. They can help nourish and hydrate your skin while reducing the risk of irritation        <!-- Add more FAQ items as needed -->
+    </div>
+               
+ </div>
+</div>
+    
+
+    
+    
+    
+
+<footer>
+    <p>&copy; 2024 Essentia. All rights reserved.</p>
+</footer>
+
+<div class="whatsapp-float" onclick="window.location.href='https://wa.me/9723649165';">
+    <img src="whatsapp.png" alt="WhatsApp">
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCqHOwin3Nr9xmVDST6druRb6G-Oi5398E",
+        authDomain: "soap-6ee9a.firebaseapp.com",
+        databaseURL: "https://soap-6ee9a-default-rtdb.firebaseio.com",
+        projectId: "soap-6ee9a",
+        storageBucket: "soap-6ee9a.appspot.com",
+        messagingSenderId: "51186353209",
+        appId: "1:51186353209:web:475d617b97ca84092039e8"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Handle form submission
+    document.getElementById('dataForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const url = document.getElementById('url').value.trim();
+
+        if (name && url) {
+            const dbRef = ref(db, 'MyList');
+            const newItemRef = push(dbRef);
+            set(newItemRef, {
+                name: name,
+                url: url
+            })
+            .then(() => {
+                console.log('Data successfully written to Firebase!');
+                alert('Your order is successfully sent');
+                document.getElementById('dataForm').reset(); // Reset the form
+            })
+            .catch((error) => {
+                console.error('Error writing data to Firebase:', error);
+            });
+        } else {
+            alert('Please fill in both fields.');
+        }
+    });
+
+    // Handle sub-menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function(event) {
+        event.preventDefault();
+        const submenu = document.getElementById('submenu');
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    });
+</script>
+
+
+
+
+<script>
+    // Add to Cart functionality
+    let cart = [];
+
+    function addToCart(product, price) {
+        cart.push({ product, price });
+        displayCart();
+    }
+
+    function displayCart() {
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.product} - ₹${item.price.toFixed(2)}`;
+            cartItems.appendChild(li);
+            total += item.price;
+        });
+        cartTotal.textContent = `Total: ₹${total.toFixed(2)}`;
+    }
+
+    document.getElementById('menu-toggle').addEventListener('click', function(event) {
+        event.preventDefault();
+        const submenu = document.getElementById('submenu');
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+        } else {
+            submenu.style.display = 'block';
+        }
+    });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.faq__item').forEach(item => {
+        item.addEventListener('click', () => {
+            const expanded = item.getAttribute('aria-expanded') === 'true';
+            document.querySelectorAll('.faq__item').forEach(i => i.setAttribute('aria-expanded', 'false'));
+            item.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        });
+    });
+});
+
+
+</script>
+<script>
+    function openSidebar() {
+        document.getElementById("mySidebar").style.width = "250px";
+    }
+
+    function closeSidebar() {
+        document.getElementById("mySidebar").style.width = "0";
+    }
+
+    document.getElementById('openSidebarBtn').addEventListener('click', openSidebar);
+</script>
+
+</body>
+</html>
+
+
+
+
+

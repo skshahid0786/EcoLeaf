@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Essentia</title>
+ <style>
+  
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #2a5d2e;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+.about-section {
+    padding: 20px;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-section h2 {
+    color: #2a5d2e;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.about-section p {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+footer {
+    background-color: #2a5d2e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+   
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* Navigation bar styling */
+nav {
+    position: relative;
+}
+
+/* Button container styling */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+}
+
+/* Button to open the sidebar */
+#openSidebarBtn {
+    background-color: #1c4d1b; /* Background color same as the sidebar */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+/* Button hover effect */
+#openSidebarBtn:hover {
+    background-color: #245e2d; /* Slightly darker shade */
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2a5d2e; /* Same green background as the button */
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #2a5d2e;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Sidebar open and close functionality */
+.open {
+    width: 250px;
+}
+
+.close {
+    width: 0;
+}
+
+
+  </style>
+</head>
+<body>
+    <header>
+        <h1>About Us</h1>
+    
+  <nav>
+    <div class="main-content">
+    <button id="openSidebarBtn">Menu</button>
+</div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+    <a href="about.html">About</a>
+    <a href="index.html">Main</a>
+    <a href="service.html">Services</a>
+    <a href="contact.html">Contact</a>
+</div>
+</nav>
+      </header>
+    <section class="about-section">
+        <div class="container">
+            <h2>Welcome to Essentia</h2>
+            <p>At Essentia, purity meets quality in every product we offer. Based in our area[Rander, Jahagirpura, Palanpur Patia, and Adajan], we are dedicated to providing you with natural, handcrafted soaps made from the finest ingredients. Our passion is to bring you products that not only cleanse but also nourish your skin, reflecting our commitment to both quality and sustainability.</p>
+            <p>We believe in the power of nature. Each soap is carefully crafted with natural ingredients such as saffron, neem, charcoal, and turmeric, ensuring a gentle yet effective cleanse. Our formulations cater to various skin types, making sure that everyone can experience the benefits of nature's' finest elements.</p>
+            <p>Being a small, local business, we pride ourselves on our personalized service and deep connection to our community. We currently serve the areas of Rander, Jahagirpura, Palanpur Patia, and Adajan. Although we are not yet available internationally, we strive to offer a unique, local touch with every product we create.</p>
+            <p>Thank you for choosing Essentia. We invite you to explore our collection and experience the essence of purity in every bar of soap. For more information or to place an order, please feel free to contact us directly.</p>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Essentia. All rights reserved.</p>
+    </footer>
+  <script>
+    function openSidebar() {
+        document.getElementById("mySidebar").style.width = "250px";
+    }
+
+    function closeSidebar() {
+        document.getElementById("mySidebar").style.width = "0";
+    }
+
+    document.getElementById('openSidebarBtn').addEventListener('click', openSidebar);
+</script>
+</body>
+</html>

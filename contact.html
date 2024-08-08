@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+   <style>
+      /* Contact page styles */
+.contact-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  background: #f4f4f4;
+}
+header {
+    background-color: #2a5d2e;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2a5d2e; /* Green color for headings */
+}
+
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-info p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #333; /* Dark text color */
+}
+
+.contact-form {
+    background: #f4f4f4; /* Light background for form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.contact-form button {
+    background-color: #2a5d2e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.contact-form button:hover {
+    background-color: #1c4d1b; /* Darker shade for hover effect */
+}
+
+
+/* Navigation bar styling */
+nav {
+    position: relative;
+}
+
+/* Button container styling */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Adjust height as needed */
+}
+
+/* Button to open the sidebar */
+#openSidebarBtn {
+    background-color: #1c4d1b; /* Background color same as the sidebar */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s; /* Smooth color transition */
+}
+
+/* Button hover effect */
+#openSidebarBtn:hover {
+    background-color: #245e2d; /* Slightly darker shade */
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2a5d2e; /* Same green background as the button */
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #2a5d2e;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Sidebar open and close functionality */
+.open {
+    width: 250px;
+}
+
+.close {
+    width: 0;
+}
+
+    </style>
+</head>
+<body>
+
+  <header>
+     <div class="contact-container">
+        <h1>Contact Us</h1>
+        <nav>
+        <div class="main-content">
+            <button id="openSidebarBtn">Menu</button>
+        </div>
+
+        <div id="mySidebar" class="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+            <a href="about.html">About</a>
+            <a href="index.html">Main</a>
+            <a href="service.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    
+  </header>
+      
+        <div class="contact-info">
+            <p>If you have any questions or need further information, feel free to reach out to us using the form below. We are here to help and will get back to you as soon as possible.</p>
+     <p><strong>Phone:</strong> +91 9723649165</p>
+     </div>
+
+            <footer>
+        <p>&copy; 2024 Essentia. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        document.getElementById("openSidebarBtn").addEventListener("click", function() {
+            document.getElementById("mySidebar").style.width = "250px";
+        });
+    </script>
+</body>
+</html>
