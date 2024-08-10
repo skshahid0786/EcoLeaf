@@ -460,14 +460,25 @@ nav {
   </div>
 </div>
   
-    <div id="checkout" style="display">
-    <h2>Checkout</h2>
-    <form id="dataForm">
-        Name: <input id="name" type="text" required><br>
-        Mobile No: <input id="url" type="number" id="mobile" required title="Enter a 10-digit number" oninput="validateNumber(this)"><br>
-        <input type="submit" value="Submit">
-    </form>
-</div>
+    <div id="checkout">
+        <h2>Checkout</h2>
+        <form id="dataForm">
+            Name: <input id="name" type="text" required><br>
+            Mobile No: <input id="mobile" type="number" required title="Enter a 10-digit number" oninput="validateNumber(this)"><br>
+            You are interested in: 
+            <select id="category" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="Category 1">Turmeric soap</option>
+                <option value="Category 2">Charcoal soap</option>
+                <option value="Category 3">Neem soap</option>
+              <option value="Category 4">Safron soap</option>
+             
+             
+                <!-- Add more categories as needed -->
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
 <script>
     function validateNumber(input) {
@@ -560,51 +571,52 @@ Organic soaps are made with natural ingredients that are gentle on the skin and 
 </div>
 
 <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCqHOwin3Nr9xmVDST6druRb6G-Oi5398E",
-        authDomain: "soap-6ee9a.firebaseapp.com",
-        databaseURL: "https://soap-6ee9a-default-rtdb.firebaseio.com",
-        projectId: "soap-6ee9a",
-        storageBucket: "soap-6ee9a.appspot.com",
-        messagingSenderId: "51186353209",
-        appId: "1:51186353209:web:475d617b97ca84092039e8"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyCqHOwin3Nr9xmVDST6druRb6G-Oi5398E",
+            authDomain: "soap-6ee9a.firebaseapp.com",
+            databaseURL: "https://soap-6ee9a-default-rtdb.firebaseio.com",
+            projectId: "soap-6ee9a",
+            storageBucket: "soap-6ee9a.appspot.com",
+            messagingSenderId: "51186353209",
+            appId: "1:51186353209:web:475d617b97ca84092039e8"
+        };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-    // Handle form submission
-    document.getElementById('dataForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+        // Handle form submission
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const url = document.getElementById('url').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const mobile = document.getElementById('mobile').value.trim();
+            const category = document.getElementById('category').value;
 
-        if (name && url) {
-            const dbRef = ref(db, 'MyList');
-            const newItemRef = push(dbRef);
-            set(newItemRef, {
-                name: name,
-                url: url
-            })
-            .then(() => {
-                console.log('Data successfully written to Firebase!');
-                alert('Your order is successfully sent');
-                document.getElementById('dataForm').reset(); // Reset the form
-            })
-            .catch((error) => {
-                console.error('Error writing data to Firebase:', error);
-            });
-        } else {
-            alert('Please fill in both fields.');
-        }
-    });
-
-    // Handle sub-menu toggle
+            if (name && mobile && category) {
+                const dbRef = ref(db, 'MyList');
+                const newItemRef = push(dbRef);
+                set(newItemRef, {
+                    name: name,
+                    mobile: mobile,
+                    category: category
+                })
+                .then(() => {
+                    console.log('Data successfully written to Firebase!');
+                    alert('Your order is successfully sent');
+                    document.getElementById('dataForm').reset(); // Reset the form
+                })
+                .catch((error) => {
+                    console.error('Error writing data to Firebase:', error);
+                });
+            } else {
+                alert('Please fill in all fields.');
+            }
+        });
+ // Handle sub-menu toggle
     document.getElementById('menu-toggle').addEventListener('click', function(event) {
         event.preventDefault();
         const submenu = document.getElementById('submenu');
